@@ -1,0 +1,52 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass{book}
+
+Format 11
+Input stdclass.inc
+
+Sides           1
+PageStyle       Headings
+
+NoStyle Quotation
+NoStyle Quote
+NoStyle Verbatim
+NoStyle Verse
+NoStyle Paragraph
+NoStyle Subparagraph
+NoStyle Section
+NoStyle Subsection
+NoStyle Chapter
+NoStyle Chapter*
+NoStyle Paragraph*
+NoStyle Subparagraph*
+NoStyle Date
+NoStyle Address
+
+Style "One Column"
+	Align		Left
+	AlignPossible	Left
+	LabelType	Centered
+	LatexType	Command
+	Category	Slides
+	Margin		Static
+	KeepEmpty	1
+	ParbreakIsNewline 1
+	LabelFont
+		Series Bold
+		Color  Blue
+	EndFont
+	Font
+		Series Bold
+	EndFont
+	LabelString	"One Column"
+	LatexName	onecolumnslide
+	Argument 1
+		Font
+			Series Medium
+		EndFont
+		Mandatory 1
+		LabelString "Content"
+		AutoInsert 1
+		Decoration Conglomerate
+	EndArgument
+End
