@@ -8,10 +8,8 @@
 \RequirePackage{tikz} % to draw
 \RequirePackage{anyfontsize} % to use the fonts
 \RequirePackage{lipsum}
-\RequirePackage{etoolbox}
 \RequirePackage{pst-all}
 \RequirePackage{pst-light3d}
-\RequirePackage{lmodern}
 \usetikzlibrary{backgrounds}
 
 \pgfdeclarelayer{background}
@@ -61,56 +59,7 @@
 \usetikzlibrary{fadings}
 \usetikzlibrary{patterns}
 
-% defining the new dimensions and parameters
-\newlength{\hatchspread}
-\newlength{\hatchthickness}
-\newlength{\hatchshift}
-\newcommand{\hatchcolor}{}
-% declaring the keys in tikz
-\tikzset{hatchspread/.code={\setlength{\hatchspread}{#1}},
-         hatchthickness/.code={\setlength{\hatchthickness}{#1}},
-         hatchshift/.code={\setlength{\hatchshift}{#1}},% must be >= 0
-         hatchcolor/.code={\renewcommand{\hatchcolor}{#1}}}
-% setting the default values
-\tikzset{hatchspread=3pt,
-         hatchthickness=0.4pt,
-         hatchshift=0pt,% must be >= 0
-         hatchcolor=black}
-% declaring the pattern
-\pgfdeclarepatternformonly[\hatchspread,\hatchthickness,\hatchshift,\hatchcolor]% variables
-   {custom north west lines}% name
-   {\pgfqpoint{\dimexpr-2\hatchthickness}{\dimexpr-2\hatchthickness}}% lower left corner
-   {\pgfqpoint{\dimexpr\hatchspread+2\hatchthickness}{\dimexpr\hatchspread+2\hatchthickness}}% upper right corner
-   {\pgfqpoint{\dimexpr\hatchspread}{\dimexpr\hatchspread}}% tile size
-   {% shape description
-    \pgfsetlinewidth{\hatchthickness}
-    \pgfpathmoveto{\pgfqpoint{0pt}{\dimexpr\hatchspread+\hatchshift}}
-    \pgfpathlineto{\pgfqpoint{\dimexpr\hatchspread+0.15pt+\hatchshift}{-0.15pt}}
-    \ifdim \hatchshift > 0pt
-      \pgfpathmoveto{\pgfqpoint{0pt}{\hatchshift}}
-      \pgfpathlineto{\pgfqpoint{\dimexpr0.15pt+\hatchshift}{-0.15pt}}
-    \fi
-    \pgfsetstrokecolor{\hatchcolor}
-%    \pgfsetdash{{1pt}{1pt}}{0pt}% dashing cannot work correctly in all situation this way
-    \pgfusepath{stroke}
-   }
-\pgfdeclarepatternformonly[\hatchspread,\hatchthickness,\hatchshift,\hatchcolor]% variables
-  {custom north east lines}% name
-  {\pgfqpoint{\dimexpr-2\hatchthickness}{\dimexpr-2\hatchthickness}}% lower left corner
-  {\pgfqpoint{\dimexpr\hatchspread+2\hatchthickness}{\dimexpr\hatchspread+2\hatchthickness}}% upper right corner
-  {\pgfqpoint{\dimexpr\hatchspread}{\dimexpr\hatchspread}}% tile size
-  {% shape description
-   \pgfsetlinewidth{\hatchthickness}
-   \pgfpathmoveto{\pgfqpoint{\dimexpr\hatchshift-0.15pt}{-0.15pt}}
-   \pgfpathlineto{\pgfqpoint{\dimexpr\hatchspread+0.15pt}{\dimexpr\hatchspread-\hatchshift+0.15pt}}
-   \ifdim \hatchshift > 0pt
-     \pgfpathmoveto{\pgfqpoint{-0.15pt}{\dimexpr\hatchspread-\hatchshift-0.15pt}}
-     \pgfpathlineto{\pgfqpoint{\dimexpr\hatchshift+0.15pt}{\dimexpr\hatchspread+0.15pt}}
-   \fi
-   \pgfsetstrokecolor{\hatchcolor}
-%    \pgfsetdash{{1pt}{1pt}}{0pt}% dashing cannot work correctly in all situation this way
-   \pgfusepath{stroke}
-  }
+\input{pupatterns.tex}
 
 \pagestyle{empty}
 
@@ -118,31 +67,31 @@
     \begin{tikzpicture}[remember picture, overlay]
         \begin{pgfonlayer}{lines}
             \fill[newgold]
-                  ($(current page.north west) + (1.25in, -1.25in)$)
+                  ($(current page.north west) + (1.5in, -1.5in)$)
                   rectangle
-                  ($(current page.north east) + (-0.75in, -4.25in)$);
+                  ($(current page.north east) + (-0.5in, -7.0in)$);
             \fill[hatchcolor=white, pattern=custom north west lines,
-                  hatchspread=30pt, hatchthickness=10pt]
-                  ($(current page.north west) + (1.25in, -1.25in)$)
+                  hatchspread=50pt, hatchthickness=20pt]
+                  ($(current page.north west) + (1.0in, -1.0in)$)
                   rectangle
-                  ($(current page.north east) + (-0.75in, -4.50in)$);
+                  ($(current page.north east) + (-0.5in, -7.25in)$);
 
-            \fill[grey60]
+            \fill[grey40]
                 ($(current page.north west) + (1in, -1in)$) --
                 ($(current page.north east) + (-1in, -1in)$) --
-                ($(current page.north east) + (-1in, -4in)$) --
-                ($(current page.north west) + (1in, -4in)$) --
+                ($(current page.north east) + (-1in, -6.5in)$) --
+                ($(current page.north west) + (1in, -6.5in)$) --
                 cycle;
         \end{pgfonlayer}
         \begin{pgfonlayer}{main}
             \node[
               align=left,
-              font=\champion\color{newgold}\fontsize{72}{80}\bfseries,
+              font=\champion\color{newgold}\fontsize{140}{156}\mdseries,
               anchor=north west,
               minimum width=\paperwidth - 2.75in,
               text width=\paperwidth - 2.75in, inner sep=0, outer sep=0
               ]
-              at ($(current page.north west) + (1.375in, -1.375in)$)
+              at ($(current page.north west) + (1.5in, -1.5in)$)
               (title)
               {\@title};
         \end{pgfonlayer}
@@ -151,14 +100,19 @@
 
 \AtBeginDocument{
 \begin{tikzpicture}[remember picture,overlay]
-\begin{pgfonlayer}{background}
-\node[scale=1.5, inner sep=0, outer sep=0,
-      anchor=south east]
-     (bottomright) at (current page.south east)
-     {\includegraphics{css/background_bottom_right.pdf}};
-\node[scale=1.5, inner sep=0, outer sep=0, anchor=north west] (topleft) at
-    (current page.north) {\includegraphics{css/background_top_left.pdf}};
-\end{pgfonlayer}
-
+    \begin{pgfonlayer}{background}
+        \node[scale=1.5,
+              inner sep=0,
+              outer sep=0,
+              anchor=south east]
+             at (current page.south east)
+             {\includegraphics{css/background_bottom_right.pdf}};
+        \node[scale=1.5,
+              inner sep=0,
+              outer sep=0,
+              anchor=north west]
+             at (current page.north west)
+             {\includegraphics{css/background_top_left.pdf}};
+    \end{pgfonlayer}
 \end{tikzpicture}
 }
