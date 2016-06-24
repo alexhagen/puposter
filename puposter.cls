@@ -59,6 +59,10 @@
 \usetikzlibrary{fadings}
 \usetikzlibrary{patterns}
 
+\newcommand{\conference}[1]{\def\@conference{#1}}
+\newcommand{\affiliation}[1]{\def\@affiliation{#1}}
+\newcommand{\tss}[1]{\textsuperscript{\myriad\mdseries{#1}}}
+
 \input{pupatterns.tex}
 
 \pagestyle{empty}
@@ -74,7 +78,7 @@
                   hatchspread=50pt, hatchthickness=20pt]
                   ($(current page.north west) + (1.0in, -1.0in)$)
                   rectangle
-                  ($(current page.north east) + (-0.5in, -7.25in)$);
+                  ($(current page.north east) + (-0.5in, -7.5in)$);
 
             \fill[grey40]
                 ($(current page.north west) + (1in, -1in)$) --
@@ -86,14 +90,40 @@
         \begin{pgfonlayer}{main}
             \node[
               align=left,
-              font=\champion\color{newgold}\fontsize{140}{156}\mdseries,
+              font=\linespread{0.7}\champion\color{newgold}\fontsize{140}{156}\mdseries,
               anchor=north west,
               minimum width=\paperwidth - 2.75in,
               text width=\paperwidth - 2.75in, inner sep=0, outer sep=0
               ]
-              at ($(current page.north west) + (1.5in, -1.5in)$)
-              (title)
+              (title) at ($(current page.north west) + (1.5in, -1.75in)$)
               {\@title};
+            \node[
+              align=right,
+              font=\myriad\color{black}\fontsize{56}{64}\mdseries,
+              anchor=north east,
+              inner sep=0,
+              outer sep=0
+            ]
+            (authors) at ($(title.east) + (-0.5in, -.75in)$)
+            {\@author};
+            \node[
+              align=right,
+              font=\myriad\color{black}\fontsize{56}{64}\mdseries,
+              anchor=north east,
+              inner sep=0,
+              outer sep=0
+            ]
+            (conference) at ($(authors.south east) + (0in, -0.25in)$)
+            {\@conference};
+            \node[
+              align=right,
+              font=\myriad\color{black}\fontsize{36}{42}\mdseries,
+              anchor=north east,
+              inner sep=0,
+              outer sep=0
+            ]
+            (affiliation) at ($(current page.north east) + (-0.5in, -7.125in)$)
+            {\@affiliation};
         \end{pgfonlayer}
     \end{tikzpicture}
 }
