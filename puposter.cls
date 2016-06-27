@@ -129,20 +129,44 @@
 }
 
 \AtBeginDocument{
-\begin{tikzpicture}[remember picture,overlay]
-    \begin{pgfonlayer}{background}
-        \node[scale=1.5,
-              inner sep=0,
-              outer sep=0,
-              anchor=south east]
-             at (current page.south east)
-             {\includegraphics{css/background_bottom_right.pdf}};
-        \node[scale=1.5,
-              inner sep=0,
-              outer sep=0,
-              anchor=north west]
-             at (current page.north west)
-             {\includegraphics{css/background_top_left.pdf}};
-    \end{pgfonlayer}
-\end{tikzpicture}
+    \begin{tikzpicture}[remember picture,overlay]
+        \begin{pgfonlayer}{background}
+            \node[scale=1.5,
+                  inner sep=0,
+                  outer sep=0,
+                  anchor=south east]
+                 at (current page.south east)
+                 {\includegraphics{css/background_bottom_right.pdf}};
+            \node[scale=1.5,
+                  inner sep=0,
+                  outer sep=0,
+                  anchor=north west]
+                 at (current page.north west)
+                 {\includegraphics{css/background_top_left.pdf}};
+        \end{pgfonlayer}
+        \begin{pgfonlayer}{lines}
+            \draw[draw=grey60] ($(current page.south west) + (1.5in, 3.0in)$) --
+                               ($(current page.south east) + (-1.5in, 3.0in)$);
+        \end{pgfonlayer}
+    \end{tikzpicture}
+}
+
+\newcommand{\twocol}{
+    \begin{tikzpicture}[remember picture, overlay]
+        \begin{pgfonlayer}{lines}
+            \draw[draw=grey60] ($(current page.north) + (0.0in, -7.5in)$) --
+                               ($(current page.south) + (0.0in, 3.5in)$);
+        \end{pgfonlayer}
+    \end{tikzpicture}
+}
+
+\newcommand{\threecol}{
+    \begin{tikzpicture}[remember picture, overlay]
+        \begin{pgfonlayer}{lines}
+            \draw[draw=grey60] ($(current page.north) + (8.0in, -7.5in)$) --
+                               ($(current page.south) + (8.0in, 3.5in)$);
+           \draw[draw=grey60] ($(current page.north) + (-8.0in, -7.5in)$) --
+                              ($(current page.south) + (-8.0in, 3.5in)$);
+        \end{pgfonlayer}
+    \end{tikzpicture}
 }
