@@ -9,8 +9,10 @@
 \RequirePackage{tikz}
 \RequirePackage{tikzpagenodes}
 \RequirePackage{anyfontsize}
+\RequirePackage{adjustbox}
 \RequirePackage{esint}
 \RequirePackage{lipsum}
+\RequirePackage{float}
 \RequirePackage{pst-all}
 \RequirePackage{pst-light3d}
 \RequirePackage{totcount}
@@ -71,7 +73,7 @@
 \DeclareMathSizes{10.0}{24}{12}{12}
 \DeclareMathSizes{10.95}{24}{12}{12}   % For size 10 text
 \DeclareMathSizes{11}{24}{18}{14}      % For size 11 text
-\DeclareMathSizes{12}{30}{24}{16}     % For size 12 text
+\DeclareMathSizes{12}{26}{22}{14}     % For size 12 text
 
 \definecolor{grey20}{RGB}{209,211,212}
 \definecolor{grey40}{RGB}{167,169,172}
@@ -181,7 +183,7 @@
 }
 
 \newcommand{\outertitle}[1]{
-  \begin{tikzpicture}
+  \begin{tikzpicture}[remember picture, overlay]
       \node[inner sep=0.0in, outer sep=0.0in, text width=\textwidth,
             fill=grey40, align=center, anchor=west, minimum height=1.25in,
             text depth=0.2in]
@@ -192,15 +194,15 @@
 }
 
 \newcommand{\innertitle}[2]{
-  \begin{tikzpicture}
-      \node[fill=newgold, minimum width=\textwidth,
-            minimum height=1.5in] (goldrect) at (0, 0) {};
+  \begin{tikzpicture}[remember picture, overlay]
+      \node[fill=newgold, minimum width=\textwidth - 0.375in,
+            minimum height=1.5in, anchor=north west] (goldrect) at (0, 0) {};
       \node[hatchcolor=white, pattern=custom north west lines,
             hatchspread=20pt, hatchthickness=7pt, hatchshift=5pt,
             minimum width=\textwidth + 1in, minimum height=2in,
             anchor=center]
             (linesrect) at ($(goldrect.center) + (0in,0in)$) {};
-      \node[anchor=center, text width=\textwidth, outer sep=0in, inner sep=0.125in,
+      \node[anchor=center, text width=\textwidth - 0.375in, outer sep=0in, inner sep=0.125in,
             text shadow={[align=center] at (goldrect.center) {\Huge \champion #1\\ \LARGE \champion #2}}]
       at (goldrect.center)
             {\Huge \champion \color{newgold} #1\\ \LARGE \champion #2};
@@ -212,8 +214,16 @@
 \NewEnviron{cell}[4]
 {
   \noindent%
-  \setlength{\cellheight}{2.0in * \real{#2}}%
-  \setlength{\cellwidth}{3.5in * \real{#1}}%
+  \ifnum\incell=1
+    \setlength{\cellheight}{1.875in * \real{#2}}%
+    \setlength{\cellwidth}{3.625in * \real{#1}}%
+  \else
+    \setlength{\cellheight}{2.0in * \real{#2}}%
+    \setlength{\cellwidth}{3.75in * \real{#1}}%
+  \fi
+  \begin{tikzpicture}[fill opacity=.4,remember picture, overlay]
+    \fill[red!40] (0,0) rectangle (\cellwidth, -\cellheight);
+  \end{tikzpicture}%
   \begin{minipage}[t][\cellheight][t]{\cellwidth}
     \noindent%
     % Check if we're already inside a cell, if not, we make the outer title
@@ -221,14 +231,33 @@
       \ifx&#3&%
         % #1 is empty
       \else
+        %\hspace*{-0.625in}%
         \innertitle{#3}{#4}%
-        \vspace{0.06125in}
+        \vspace{2.125in}
       \fi
     \else
       \outertitle{#3}%
-      \vspace{0.125in}
+      \vspace{1.0in}\\
     \fi
     \def\incell{1}%
-    \BODY%
+    \vspace*{\fill}
+    \BODY
+    \vspace*{\fill}
   \end{minipage}%
+}
+
+\NewEnviron{col}[2]
+{
+  \setlength{\cellheight}{1.875in * \real{#2}}%
+  \setlength{\cellwidth}{3.625in * \real{#1}}%
+  \begin{minipage}[t][\cellheight][t]{\cellwidth}
+    \BODY
+  \end{minipage}
+}
+
+\newcommand{\posterfigure}[3]{
+  \begin{figure}[H]
+    \centering\adjustbox{keepaspectratio=true, height=\cellheight-4em}{\includegraphics{example-image}}
+  \caption{#2}\label{#3}
+  \end{figure}%
 }

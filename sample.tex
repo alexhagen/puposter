@@ -8,16 +8,102 @@
 \affiliation{(1) Purdue University, (2) Sagamore Adams Laboratories, LLC.}
 \conference{DNDO ARI, July 2016, Atlanta, GA}
 \renewcommand{\today}{July 3, 2016}
-\maketitle
+\maketitle%
+\hspace*{-1cm}%
 \begin{cell}{6}{12}{Threshold Energy Neutron Analysis}{}
-  \begin{cell}{2}{2}{Centrifugal TMFDs}{Rejection Metrics for Various Sizes}
-    Text here
+  % CTMFD Row
+  \begin{cell}{4}{3}{Centrifugal TMFDs}{Efficiency and Rejection Experimentation}
+    \begin{itemize}
+      \item TENA uses a continuously driven $2.45\,MeV$ $\left(D,D\right)$ interrogation source
+      \item CTMFDs can be tuned to be sensitive to only neutrons above $~2.8\,MeV$, only detecting fission neutrons from the interrogated cargo
+      \item Sizes of CTMFDs tested have ranged from $3\,cm^{3}$ bulb to $40\,cm^{3}$ bulb
+      \item CTMFDs with $16 - 20 cm^{3}$ bulbs have efficiency ratios between $\left(D,D\right)$ and fission of $1:10^{3}$ with efficiencies up to $1.5\%$
+      \item Larger CTMFDs with $40 cm^{3}$ bulbs showed efficiency ratios of $1:10^{3}$ and $1:10^{4}$ with efficiencies of $4.0\%$ and $1.5\%$, respectively
+    \end{itemize}
   \end{cell}%
-  \begin{cell}{2}{2}{}{}
-    Text here
+  \hspace*{\fill}
+  \begin{cell}{2}{3}{}{}
+    \posterfigure{test.pgf}{Efficiency between $\left(D,D\right)$ and $Cf$ for $16\,cm^{3}$ and $40\,cm^{3}$ bulbed CTMFDs}{fig:mctmfd}
+  \end{cell} \\
+  \vspace*{\fill}
+  % Panel Row
+  \begin{cell}{2}{3}{}{}
+    \posterfigure{test.pgf}{Design Schematic of Tested Panel of 3 Medium CTMFD Systems}{fig:panelmctmfddesign}
+  \end{cell}
+  \hspace*{\fill}
+  \begin{cell}{2}{3}{Panel CTMFDs}{Collections of CTMFD Systems}
+    \begin{itemize}
+      \item item 1
+      \item item 2
+    \end{itemize}
   \end{cell}%
-  \begin{cell}{2}{2}{}{}
-    Text here
+  \hspace*{\fill}
+  \begin{cell}{2}{3}{}{}
+    \posterfigure{test.pgf}{Efficiency between $\left(D,D\right)$ and $Cf$ for 3 $16\,cm^{3}$ bulbed CTMFDs}{fig:panelmctmfd}
+  \end{cell} \\
+  \vspace*{\fill}
+  % EATMFD Row
+  \begin{cell}{3}{3}{Economical Acoustic TMFDs}{Efficiency and Rejection Experimentation}
+    \begin{itemize}
+      \item item 1
+      \item item 2
+    \end{itemize}
+  \end{cell}%
+  \hspace*{\fill}
+  \begin{cell}{3}{3}{}{}
+    \posterfigure{test.pgf}{Efficiency between $\left(D,D\right)$ and $Cf$ for an Economical ATMFD system}{fig:eatmfd}
+  \end{cell} \\
+  \vspace*{\fill}
+  % DATMFD Row
+  \begin{cell}{3}{3}{}{}
+    \posterfigure{test.pgf}{Efficiency between $\left(D,D\right)$ and $Cf$ for an Directional ATMFD system}{fig:datmfd}
+  \end{cell}
+  \hspace*{\fill}
+  \begin{cell}{3}{3}{Directional Acoustic TMFDs}{Efficiency and Rejection Experimentation}
+    \begin{itemize}
+      \item item 1
+      \item item 2
+    \end{itemize}
   \end{cell}%
 \end{cell}%
+\hspace*{.5in}
+%\hspace*{-1cm}
+\begin{col}{6}{12}
+  \begin{cell}{6}{8}{Photointerrogation}{}
+    \begin{col}{2}{8}
+      \begin{cell}{2}{5}{Clinac 6Ex Interrogation}{Interrogation Results with $6 MeV \gamma$}
+        \begin{itemize}
+          \item item 1
+          \item item 2
+        \end{itemize}
+      \end{cell} \\
+      \vspace*{\fill}
+      \begin{cell}{2}{3}{}{}
+        \posterfigure{test.pgf}{Setup of CTMFD Detector under $6\,MeV\,\gamma$ beamline}{fig:clinacsetup}
+      \end{cell}
+    \end{col}%
+    \begin{col}{4}{8}
+      \begin{cell}{4}{3}{}{}
+        \posterfigure{test.pgf}{Efficiency of detection of NU and Be targets in $6\,MeV\,\gamma$ beamline}{fig:clinacefficiency}
+      \end{cell} \\
+      \vspace*{\fill}
+      \begin{cell}{4}{5}{}{}
+        \posterfigure{test.pgf}{Photoneutron production in Clinac Environment}{fig:photoneutron}
+      \end{cell}
+    \end{col}%
+  \end{cell}
+  \\
+  \begin{cell}{6}{4}{Future Work and Acknowledgements}{}
+    \begin{cell}{3}{4}{DDAA}{Differential Die Away Analysis}
+      \begin{itemize}
+        \item item 1
+        \item item 2
+      \end{itemize}
+    \end{cell}%
+    \hspace*{\fill}
+    \begin{cell}{3}{4}{Acknowledgements}{}
+      Acknowledge people here
+    \end{cell}
+  \end{cell}%
+\end{col}%
 \end{document}
