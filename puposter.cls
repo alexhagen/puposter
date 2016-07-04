@@ -4,18 +4,16 @@
 %% Load base
 \LoadClass[12pt]{article}
 
-\RequirePackage{fontspec}
+\RequirePackage[no-math]{fontspec}
 \RequirePackage{calc}
 \RequirePackage{tikz}
+\RequirePackage{fp}
 \RequirePackage{tikzpagenodes}
 \RequirePackage{anyfontsize}
 \RequirePackage{adjustbox}
-\RequirePackage{esint}
+\RequirePackage{ifthen}
 \RequirePackage{lipsum}
 \RequirePackage{float}
-\RequirePackage{pst-all}
-\RequirePackage{pst-light3d}
-\RequirePackage{totcount}
 \RequirePackage{environ}
 \usetikzlibrary{shadows}
 \tikzset{
@@ -69,11 +67,13 @@
              Scale = 2.0%
             ]{MyriadPro-Cond.otf}
 
-\DeclareMathSizes{9.8}{24}{12}{12}
-\DeclareMathSizes{10.0}{24}{12}{12}
-\DeclareMathSizes{10.95}{24}{12}{12}   % For size 10 text
-\DeclareMathSizes{11}{24}{18}{14}      % For size 11 text
-\DeclareMathSizes{12}{26}{22}{14}     % For size 12 text
+\RequirePackage{mathastext}
+
+%\DeclareMathSizes{9.8}{24}{12}{12}
+%\DeclareMathSizes{10.0}{24}{12}{12}
+%\DeclareMathSizes{10.95}{24}{12}{12}   % For size 10 text
+%\DeclareMathSizes{11}{24}{14}{10}      % For size 11 text
+%\DeclareMathSizes{12}{26}{18}{12}     % For size 12 text
 
 \definecolor{grey20}{RGB}{209,211,212}
 \definecolor{grey40}{RGB}{167,169,172}
@@ -157,6 +157,7 @@
 }
 
 \AtBeginDocument{
+    \def\numheadings{0}
     \setlength\parindent{0pt}%
     \SetMathAlphabet\mathrm{normal}{OT1}{myriadmath}{m}{n}%
     \begin{tikzpicture}[remember picture,overlay]
@@ -184,28 +185,32 @@
 
 \newcommand{\outertitle}[1]{
   \begin{tikzpicture}[remember picture, overlay]
+  \begin{pgfonlayer}{lines}
       \node[inner sep=0.0in, outer sep=0.0in, text width=\textwidth,
-            fill=grey40, align=center, anchor=west, minimum height=1.25in,
+            fill=grey40, align=center, anchor=north west, minimum height=1.25in,
             text depth=0.2in]
       {
           \color{newgold}\fontsize{36}{42}\champion{#1}
       };
+  \end{pgfonlayer}
   \end{tikzpicture}%
 }
 
 \newcommand{\innertitle}[2]{
   \begin{tikzpicture}[remember picture, overlay]
+    \begin{pgfonlayer}{background}
       \node[fill=newgold, minimum width=\textwidth - 0.375in,
             minimum height=1.5in, anchor=north west] (goldrect) at (0, 0) {};
       \node[hatchcolor=white, pattern=custom north west lines,
             hatchspread=20pt, hatchthickness=7pt, hatchshift=5pt,
-            minimum width=\textwidth + 1in, minimum height=2in,
+            minimum width=\textwidth + 1in, minimum height=1.5in,
             anchor=center]
             (linesrect) at ($(goldrect.center) + (0in,0in)$) {};
       \node[anchor=center, text width=\textwidth - 0.375in, outer sep=0in, inner sep=0.125in,
             text shadow={[align=center] at (goldrect.center) {\Huge \champion #1\\ \LARGE \champion #2}}]
       at (goldrect.center)
             {\Huge \champion \color{newgold} #1\\ \LARGE \champion #2};
+    \end{pgfonlayer}
   \end{tikzpicture}%
 }
 
@@ -215,15 +220,15 @@
 {
   \noindent%
   \ifnum\incell=1
-    \setlength{\cellheight}{1.875in * \real{#2}}%
+    \setlength{\cellheight}{1.875in * \real{#2} - 0.1in * \real{#2} * \real{\numheadings}}%
     \setlength{\cellwidth}{3.625in * \real{#1}}%
   \else
-    \setlength{\cellheight}{2.0in * \real{#2}}%
+    \setlength{\cellheight}{2.0in * \real{#2} - 0.09in * \real{#2} * \real{\numheadings}}%
     \setlength{\cellwidth}{3.75in * \real{#1}}%
   \fi
-  \begin{tikzpicture}[fill opacity=.4,remember picture, overlay]
-    \fill[red!40] (0,0) rectangle (\cellwidth, -\cellheight);
-  \end{tikzpicture}%
+  %\begin{tikzpicture}[fill opacity=.4,remember picture, overlay]
+  %  \fill[red!40] (0,0) rectangle (\cellwidth, -\cellheight);
+  %\end{tikzpicture}%
   \begin{minipage}[t][\cellheight][t]{\cellwidth}
     \noindent%
     % Check if we're already inside a cell, if not, we make the outer title
@@ -237,7 +242,7 @@
       \fi
     \else
       \outertitle{#3}%
-      \vspace{1.0in}\\
+      \vspace{1.25in}\\
     \fi
     \def\incell{1}%
     \vspace*{\fill}
@@ -248,7 +253,7 @@
 
 \NewEnviron{col}[2]
 {
-  \setlength{\cellheight}{1.875in * \real{#2}}%
+  \setlength{\cellheight}{1.875in * \real{#2} - 0.083in * \real{#2} * \real{\numheadings}}%
   \setlength{\cellwidth}{3.625in * \real{#1}}%
   \begin{minipage}[t][\cellheight][t]{\cellwidth}
     \BODY
@@ -256,8 +261,13 @@
 }
 
 \newcommand{\posterfigure}[3]{
+  \filename@parse{#1}
   \begin{figure}[H]
-    \centering\adjustbox{keepaspectratio=true, height=\cellheight-4em}{\includegraphics{example-image}}
-  \caption{#2}\label{#3}
+    \ifthenelse{\equal{\filename@ext}{pgf}}{
+      \centering\adjustbox{keepaspectratio=true, height=\cellheight-4em}{\input{#1}}
+    }{
+      \centering\adjustbox{keepaspectratio=true, height=\cellheight-4em}{\includegraphics{#1}}
+    }
+  \centering \caption{#2}\label{#3}
   \end{figure}%
 }

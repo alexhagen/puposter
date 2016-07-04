@@ -10,8 +10,10 @@
 \renewcommand{\today}{July 3, 2016}
 \maketitle%
 \hspace*{-1cm}%
+\stepcounter{section}
 \begin{cell}{6}{12}{Threshold Energy Neutron Analysis}{}
   % CTMFD Row
+  \def\numheadings{1}
   \begin{cell}{4}{3}{Centrifugal TMFDs}{Efficiency and Rejection Experimentation}
     \begin{itemize}
       \item TENA uses a continuously driven $2.45\,MeV$ $\left(D,D\right)$ interrogation source
@@ -23,12 +25,12 @@
   \end{cell}%
   \hspace*{\fill}
   \begin{cell}{2}{3}{}{}
-    \posterfigure{test.pgf}{Efficiency between $\left(D,D\right)$ and $Cf$ for $16\,cm^{3}$ and $40\,cm^{3}$ bulbed CTMFDs}{fig:mctmfd}
+    \posterfigure{img/ctmfd_eff.pgf}{Efficiency between $\left(D,D\right)$ and $Cf$ for $16\,cm^{3}$ and $40\,cm^{3}$ bulbed CTMFDs}{fig:mctmfd}
   \end{cell} \\
   \vspace*{\fill}
   % Panel Row
   \begin{cell}{2}{3}{}{}
-    \posterfigure{test.pgf}{Design Schematic of Tested Panel of 3 Medium CTMFD Systems}{fig:panelmctmfddesign}
+    \posterfigure{example-image}{Design Schematic of Tested Panel of 3 Medium CTMFD Systems}{fig:panelmctmfddesign}
   \end{cell}
   \hspace*{\fill}
   \begin{cell}{2}{3}{Panel CTMFDs}{Collections of CTMFD Systems}
@@ -39,7 +41,7 @@
   \end{cell}%
   \hspace*{\fill}
   \begin{cell}{2}{3}{}{}
-    \posterfigure{test.pgf}{Efficiency between $\left(D,D\right)$ and $Cf$ for 3 $16\,cm^{3}$ bulbed CTMFDs}{fig:panelmctmfd}
+    \posterfigure{img/panel_analysis.pgf}{Efficiency between $\mathrm{\left(D,D\right)}$ and $\mathrm{Cf}$ bulbed CTMFDs}{fig:panelmctmfd}
   \end{cell} \\
   \vspace*{\fill}
   % EATMFD Row
@@ -51,12 +53,12 @@
   \end{cell}%
   \hspace*{\fill}
   \begin{cell}{3}{3}{}{}
-    \posterfigure{test.pgf}{Efficiency between $\left(D,D\right)$ and $Cf$ for an Economical ATMFD system}{fig:eatmfd}
+    \posterfigure{img/ef15_eff.pdf}{Efficiency between $\mathrm{\left(D,D\right)}$ and $\mathrm{Cf}$ for an Economical ATMFD system}{fig:eatmfd}
   \end{cell} \\
   \vspace*{\fill}
   % DATMFD Row
   \begin{cell}{3}{3}{}{}
-    \posterfigure{test.pgf}{Efficiency between $\left(D,D\right)$ and $Cf$ for an Directional ATMFD system}{fig:datmfd}
+    \posterfigure{img/datmfd_eff.pgf}{Efficiency between $\mathrm{\left(D,D\right)}$ and $\mathrm{Cf}$ for an Directional ATMFD system}{fig:datmfd}
   \end{cell}
   \hspace*{\fill}
   \begin{cell}{3}{3}{Directional Acoustic TMFDs}{Efficiency and Rejection Experimentation}
@@ -68,7 +70,9 @@
 \end{cell}%
 \hspace*{.5in}
 %\hspace*{-1cm}
+\stepcounter{section}
 \begin{col}{6}{12}
+  \def\numheadings{2}
   \begin{cell}{6}{8}{Photointerrogation}{}
     \begin{col}{2}{8}
       \begin{cell}{2}{5}{Clinac 6Ex Interrogation}{Interrogation Results with $6 MeV \gamma$}
@@ -79,20 +83,20 @@
       \end{cell} \\
       \vspace*{\fill}
       \begin{cell}{2}{3}{}{}
-        \posterfigure{test.pgf}{Setup of CTMFD Detector under $6\,MeV\,\gamma$ beamline}{fig:clinacsetup}
+        \posterfigure{example-image}{Setup of CTMFD Detector under $6\,MeV\,\gamma$ beamline}{fig:clinacsetup}
       \end{cell}
     \end{col}%
     \begin{col}{4}{8}
       \begin{cell}{4}{3}{}{}
-        \posterfigure{test.pgf}{Efficiency of detection of NU and Be targets in $6\,MeV\,\gamma$ beamline}{fig:clinacefficiency}
+        \posterfigure{img/photoneutron_detection.pgf}{Efficiency of detection of NU and Be targets in $6\,MeV\,\gamma$ beamline}{fig:clinacefficiency}
       \end{cell} \\
       \vspace*{\fill}
       \begin{cell}{4}{5}{}{}
-        \posterfigure{test.pgf}{Photoneutron production in Clinac Environment}{fig:photoneutron}
+        \posterfigure{example-image}{Photoneutron production in Clinac Environment}{fig:photoneutron}
       \end{cell}
     \end{col}%
   \end{cell}
-  \\
+  \vspace*{\fill} \\
   \begin{cell}{6}{4}{Future Work and Acknowledgements}{}
     \begin{cell}{3}{4}{DDAA}{Differential Die Away Analysis}
       \begin{itemize}
