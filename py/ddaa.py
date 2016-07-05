@@ -93,5 +93,4 @@ figure.ax_subp[0].set_ylim(0, 1.25)
 figure.markers_off()
 figure.lines_on()
 figure.export('../img/atmfd_p', sizes=['cs'],
-              formats=['pdf'], customsize=[6.0, 3.0])
-figure.show()
+              formats=['pdf', 'pgf'], customsize=[9.0, 6.0])
