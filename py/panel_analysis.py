@@ -47,6 +47,7 @@ plot.xlabel('Negative Pressure ($p_{neg}$) [$bar$]')
 plot.ylabel('Efficiency ($\eta$) [ ]')
 plot.legend()
 plot.ax.set_yscale('log')
+plot.ylim(1.0E-7, 1.0E-1)
 
 plot.export("../img/panel_analysis", sizes=['cs'], formats=['pdf', 'pgf'],
             customsize=[4.5, 3])

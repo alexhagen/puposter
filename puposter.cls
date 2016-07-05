@@ -9,6 +9,7 @@
 \RequirePackage{tikz}
 \RequirePackage{fp}
 \RequirePackage{tikzpagenodes}
+\RequirePackage{svg}
 \RequirePackage{anyfontsize}
 \RequirePackage{adjustbox}
 \RequirePackage{ifthen}
@@ -199,14 +200,14 @@
 \newcommand{\innertitle}[2]{
   \begin{tikzpicture}[remember picture, overlay]
     \begin{pgfonlayer}{background}
-      \node[fill=newgold, minimum width=\textwidth - 0.375in,
-            minimum height=1.5in, anchor=north west] (goldrect) at (0, 0) {};
+      \node[fill=newgold, minimum width=\textwidth,
+            minimum height=1.5in, anchor=north west] (goldrect) at (0.125in, 0) {};
       \node[hatchcolor=white, pattern=custom north west lines,
             hatchspread=20pt, hatchthickness=7pt, hatchshift=5pt,
-            minimum width=\textwidth + 1in, minimum height=1.5in,
+            minimum width=\textwidth + 0.375in, minimum height=1.75in,
             anchor=center]
             (linesrect) at ($(goldrect.center) + (0in,0in)$) {};
-      \node[anchor=center, text width=\textwidth - 0.375in, outer sep=0in, inner sep=0.125in,
+      \node[anchor=center, text width=\textwidth, outer sep=0in, inner sep=0.125in,
             text shadow={[align=center] at (goldrect.center) {\Huge \champion #1\\ \LARGE \champion #2}}]
       at (goldrect.center)
             {\Huge \champion \color{newgold} #1\\ \LARGE \champion #2};
@@ -238,16 +239,16 @@
       \else
         %\hspace*{-0.625in}%
         \innertitle{#3}{#4}%
-        \vspace{2.125in}
+        \vspace{1.75in}
       \fi
     \else
       \outertitle{#3}%
       \vspace{1.25in}\\
     \fi
     \def\incell{1}%
-    \vspace*{\fill}
+    %\vspace*{\fill}
     \BODY
-    \vspace*{\fill}
+    %\vspace*{\fill}
   \end{minipage}%
 }
 
@@ -263,7 +264,7 @@
 \newcommand{\posterfigure}[3]{
   \filename@parse{#1}
   \begin{figure}[H]
-    \ifthenelse{\equal{\filename@ext}{pgf}}{
+    \ifthenelse{\equal{\filename@ext}{pgf} \OR \equal{\filename@ext}{tex}}{
       \centering\adjustbox{keepaspectratio=true, height=\cellheight-4em}{\input{#1}}
     }{
       \centering\adjustbox{keepaspectratio=true, height=\cellheight-4em}{\includegraphics{#1}}
@@ -271,3 +272,5 @@
   \centering \caption{#2}\label{#3}
   \end{figure}%
 }
+
+\def\labelitemi{\Huge $\Rightarrow$}

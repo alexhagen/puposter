@@ -23,8 +23,12 @@ figure7: py/photoneutron_eff.py
 	cd py; \
 	python photoneutron_eff.py
 
+figure9: py/ddaa.py
+	cd py; \
+	python ddaa.py
+
 sample: sample.tex
 	xelatex sample.tex
 	xelatex sample.tex
 	rm -f *.aux *.dvi *.log *.mw *.cpsheadings
-	evince sample.pdf &
+	open sample.pdf

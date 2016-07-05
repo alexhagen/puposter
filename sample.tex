@@ -35,8 +35,10 @@
   \hspace*{\fill}
   \begin{cell}{2}{3}{Panel CTMFDs}{Collections of CTMFD Systems}
     \begin{itemize}
-      \item item 1
-      \item item 2
+      \item A panel of 3 medium CTMFD systems with $16\,\mathrm{cm^{3}}$ bulbs was constructed
+      \item Panel results showed the ability to discriminate with rejection of $1:10^{3}$
+      \item Can use coincidence counting windows to gate out background and interrogation neutrons, giving power law decrease of background as systems are added
+      \item Sagamore Adams Laboratories, in conjunction with Pony Industries (Japan), plans to use 1 - 3 panels of 15 medium CTMFD systems each in field
     \end{itemize}
   \end{cell}%
   \hspace*{\fill}
@@ -47,8 +49,12 @@
   % EATMFD Row
   \begin{cell}{3}{3}{Economical Acoustic TMFDs}{Efficiency and Rejection Experimentation}
     \begin{itemize}
-      \item item 1
-      \item item 2
+      \item Acoustic TMFDs use the same fluid principle as CTMFDs to detect neutrons, but induce negative pressure by acoustic agitation
+      \item Dead time in decreased compared to CTMFDs, but the negative pressure profile is more complex
+      \item Economical ATMFDs utilize a standard beaker and disk drive PZT to induce large negative pressure volumes which are sensitive to neutrons
+      \item By lowering the power delivered to the drive PZT, the entire pressure field is diminished
+      \item This, in effect, can gate out lower energy neutrons from detection
+      \item By decreasing the drive power, rejection ratios between $\left(D,D\right)$ and $\mathrm{Cf}$ were found to be at most $1:10^{2}$
     \end{itemize}
   \end{cell}%
   \hspace*{\fill}
@@ -63,8 +69,10 @@
   \hspace*{\fill}
   \begin{cell}{3}{3}{Directional Acoustic TMFDs}{Efficiency and Rejection Experimentation}
     \begin{itemize}
-      \item item 1
-      \item item 2
+      \item Directional ATMFDs use a cylindrical beaker with two reflectors and a ring drive PZT to induce oscillating negative pressures
+      \item By lowering the drive power, rejection rates between $\mathrm{\left(D,D\right)}$ and $\mathrm{Cf}$ were found to be up to $1:10^{3}$
+      \item This increase compared to the EATMFD is hypothesized to be because of the simpler and flatter negative pressure field in the DATMFD
+      \item The directional and $ns$ timing features of the DATMFD could also be used to veto counts from the interrogation source, which may provide higher rejection
     \end{itemize}
   \end{cell}%
 \end{cell}%
@@ -75,15 +83,20 @@
   \def\numheadings{2}
   \begin{cell}{6}{8}{Photointerrogation}{}
     \begin{col}{2}{8}
-      \begin{cell}{2}{5}{Clinac 6Ex Interrogation}{Interrogation Results with $6 MeV \gamma$}
+      \begin{cell}{2}{5}{Clinac 6Ex Interrogation}{Interrogation Results with $6 MeV {\HUGE \gamma}$}
         \begin{itemize}
-          \item item 1
-          \item item 2
+          \item TMFDs are blind to photons, which makes them ideally suited for photointerrogation environments
+          \item The TMFDs have proven blindness in up to a $>100\,\mathrm{\frac{R}{hr}}$ $\mathrm{^{140}La}$ field ($1.7\,\mathrm{MeV}\,\gamma$)
+          \item TMFDs have been tested in a photointerrogation environment using a $6\,\mathrm{MV}$ Varian CLINAC accelerator with a $\mathrm{W}$ target
+          \item Under photointerrogation, a CTMFD at $5\,\mathrm{bar}$ was able to detect $630\,\mathrm{g}$ of natural uranium while remaining blind to photons
+          \item At higher negative pressure, photoneutron interrogation from the $\left(\gamma,n\right)$ reaction on $\mathrm{^{2}H}$ contaminates the interrogation beam
+          \item Using lower negative pressure and standoff was able to gate out contaminating photoneutrons, but schemes for shielding the detector or photoneutron creating materials are in development
+          \item If photoneutron contamination can be reduced, the full efficiency of the CTMFD detector could be used, significantly decreasing the mass of Uranium that could be detected
         \end{itemize}
       \end{cell} \\
       \vspace*{\fill}
       \begin{cell}{2}{3}{}{}
-        \posterfigure{example-image}{Setup of CTMFD Detector under $6\,MeV\,\gamma$ beamline}{fig:clinacsetup}
+        \posterfigure{img/clinac_setup.pdf}{Setup of CTMFD Detector under $6\,MeV\,{\HUGE \gamma}$ beamline}{fig:clinacsetup}
       \end{cell}
     \end{col}%
     \begin{col}{4}{8}
@@ -100,14 +113,36 @@
   \begin{cell}{6}{4}{Future Work and Acknowledgements}{}
     \begin{cell}{3}{4}{DDAA}{Differential Die Away Analysis}
       \begin{itemize}
-        \item item 1
-        \item item 2
+        \item Differential Die Away Analysis type schemes are possible with TMFDs. The Acoustically Tensioned Metastable Fluid Detector could be phase locked to be insensitive during the interrogation pulse, thus only detecting on a die away signal.
+        \item asfd
       \end{itemize}
     \end{cell}%
     \hspace*{\fill}
-    \begin{cell}{3}{4}{Acknowledgements}{}
-      Acknowledge people here
+    \begin{cell}{3}{4}{}{}
+      DDAA Figure here
     \end{cell}
   \end{cell}%
-\end{col}%
+\end{col}
+\begin{tikzpicture}[remember picture, overlay]
+    \node[inner sep=0, outer sep=0, text width=22in, text height=1.5in,
+          anchor=south west] (ack)
+          at ($(current page.south west) + (1.5in, 1.0in)$)
+          {
+          References available upon request.\\
+          \textbf{Acknowledgements:}\\
+          Purdue University Faculty and Staff: Drs. J. Poulson and N. Rancilio
+          (Purdue Veterinary Medicine Faculty), Dr. T. Grimes, J. Webster,
+          A. Bakken (Graduate Researchers), N. Boyle, A. Early, S. Dissler,
+          Purdue REM Staff (Radiological and Chemical Safety) \\
+          Jefferson High School Community Outreach: J. Ruhl (Science Teacher),
+          C. Mason, N. Mondero, S. Tan, C. Hainje, P. Stamper, R. Scott
+          (Involved Students) \\
+          Industrial Collaborators: Dr. B. Archambault,
+          Sagamore Adams Laboratories (www.salabsllc.com)
+          };
+      \node[inner sep=0, outer sep=0, text width=22in, text height=1.5in,
+            anchor=south east, align=right] (logos)
+            at ($(current page.south east) + (-1.5in, 1.0in)$)
+            {\includegraphics[scale=1.25]{img/logos.pdf}};
+\end{tikzpicture}
 \end{document}
