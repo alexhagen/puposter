@@ -6,6 +6,8 @@
 
 \RequirePackage[no-math]{fontspec}
 \RequirePackage{calc}
+\RequirePackage{array}
+\RequirePackage[table]{xcolor}
 \RequirePackage{tikz}
 \RequirePackage{fp}
 \RequirePackage{tikzpagenodes}
@@ -98,7 +100,7 @@
 \renewcommand\maketitle{
     \begin{tikzpicture}[remember picture, overlay]
         \begin{pgfonlayer}{lines}
-            \fill[newgold]
+            \fill[grey40]
                   ($(current page.north west) + (1.5in, -1.5in)$)
                   rectangle
                   ($(current page.north east) + (-0.5in, -7.0in)$);
@@ -108,7 +110,7 @@
                   rectangle
                   ($(current page.north east) + (-0.5in, -7.75in)$);
 
-            \fill[grey40]
+            \fill[newgold]
                 ($(current page.north west) + (1in, -1in)$) --
                 ($(current page.north east) + (-1in, -1in)$) --
                 ($(current page.north east) + (-1in, -6.5in)$) --
@@ -118,7 +120,7 @@
         \begin{pgfonlayer}{main}
             \node[
               align=left,
-              font=\linespread{0.7}\champion\color{newgold}\fontsize{70}{78}\mdseries,
+              font=\linespread{0.7}\champion\color{black}\fontsize{70}{78}\mdseries,
               anchor=north west,
               minimum width=\paperwidth - 2.75in,
               text width=\paperwidth - 2.75in, inner sep=0, outer sep=0
@@ -127,7 +129,7 @@
               {\@title};
             \node[
               align=right,
-              font=\myriad\color{black}\fontsize{28}{32}\mdseries,
+              font=\myriad\color{grey60}\fontsize{28}{32}\mdseries,
               anchor=north east,
               inner sep=0,
               outer sep=0
@@ -136,7 +138,7 @@
             {\@author};
             \node[
               align=right,
-              font=\myriad\color{black}\fontsize{28}{32}\mdseries,
+              font=\myriad\color{grey60}\fontsize{28}{32}\mdseries,
               anchor=north east,
               inner sep=0,
               outer sep=0
@@ -188,10 +190,10 @@
   \begin{tikzpicture}[remember picture, overlay]
   \begin{pgfonlayer}{lines}
       \node[inner sep=0.0in, outer sep=0.0in, text width=\textwidth,
-            fill=grey40, align=center, anchor=north west, minimum height=1.25in,
+            fill=newgold, align=center, anchor=north west, minimum height=1.25in,
             text depth=0.2in]
       {
-          \color{newgold}\fontsize{36}{42}\champion{#1}
+          \color{black}\fontsize{36}{42}\champion{#1}
       };
   \end{pgfonlayer}
   \end{tikzpicture}%
@@ -200,7 +202,7 @@
 \newcommand{\innertitle}[2]{
   \begin{tikzpicture}[remember picture, overlay]
     \begin{pgfonlayer}{background}
-      \node[fill=newgold, minimum width=\textwidth,
+      \node[fill=grey40, minimum width=\textwidth,
             minimum height=1.5in, anchor=north west] (goldrect) at (0.125in, 0) {};
       \node[hatchcolor=white, pattern=custom north west lines,
             hatchspread=20pt, hatchthickness=7pt, hatchshift=5pt,
@@ -210,14 +212,14 @@
       \node[anchor=center, text width=\textwidth, outer sep=0in, inner sep=0.125in,
             text shadow={[align=center] at (goldrect.center) {\Huge \champion #1\\ \LARGE \champion #2}}]
       at (goldrect.center)
-            {\Huge \champion \color{newgold} #1\\ \LARGE \champion #2};
+            {\Huge \champion \color{grey60} #1\\ \LARGE \champion #2};
     \end{pgfonlayer}
   \end{tikzpicture}%
 }
 
 \newlength{\cellheight}
 \newlength{\cellwidth}
-\NewEnviron{cell}[4]
+\NewEnviron{pucell}[4]
 {
   \noindent%
   \ifnum\incell=1
@@ -252,7 +254,7 @@
   \end{minipage}%
 }
 
-\NewEnviron{col}[2]
+\NewEnviron{pucol}[2]
 {
   \setlength{\cellheight}{1.875in * \real{#2} - 0.083in * \real{#2} * \real{\numheadings}}%
   \setlength{\cellwidth}{3.625in * \real{#1}}%
@@ -267,7 +269,7 @@
     \ifthenelse{\equal{\filename@ext}{pgf} \OR \equal{\filename@ext}{tex}}{
       \centering\adjustbox{keepaspectratio=true, height=\cellheight-4em}{\input{#1}}
     }{
-      \centering\adjustbox{keepaspectratio=true, height=\cellheight-4em}{\includegraphics{#1}}
+      \centering\includegraphics[keepaspectratio=true, width=\cellwidth, height=\cellheight]{#1}
     }
   \centering \caption{#2}\label{#3}
   \end{figure}%

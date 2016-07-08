@@ -22,7 +22,7 @@ figure5: py/datmfd_analysis.py
 figure7: py/photoneutron_eff.py
 	cd py; \
 	python photoneutron_eff.py
-	
+
 figure8: py/clinac_plot.py
 	cd py; \
 	python clinac_plot.py
@@ -31,8 +31,12 @@ figure9: py/ddaa.py
 	cd py; \
 	python ddaa.py
 
+figure10: py/ctmfd_eff_plot.py
+	cd py; \
+	python ctmfd_eff_plot.py
+
 sample: sample.tex
 	xelatex sample.tex
 	xelatex sample.tex
 	rm -f *.aux *.dvi *.log *.mw *.cpsheadings
-	/Applications/Adobe\ Acrobat\ Reader\ DC.app/Contents/MacOS/AdobeReader sample.pdf
+	/Applications/Adobe\ Acrobat\ Reader\ DC.app/Contents/MacOS/AdobeReader sample.pdf &

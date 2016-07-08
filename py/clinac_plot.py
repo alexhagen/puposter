@@ -174,7 +174,7 @@ plot.add_line(132. + np.array([-1.4, 1.4, 1.4, -1.4, -1.4]),
               linestyle='-', linecolor='#746C66')
 
 plot.fill_between([-15, -5, 5, 15], [-100, -100, -100, -100],
-                  [-100, 100, 100, -100], fc='#F8EBC8', alpha=0.05)
+                  [-100, 100, 100, -100], fc='#F8EBC8', alpha=0.35)
 plot.lines_on()
 plot.markers_off()
 # plot.ax.set_aspect(1.0)
@@ -182,10 +182,35 @@ plot.add_text(50, -115, "Concrete")
 plot.add_text(50, -150, "Subfloor")
 plot.add_arrow(0, 0, 100, 65, string=r"$\gamma$ beam", fc="#E3AE24")
 plot.ylim(-190, 105.0)
-plot.xlim(-70, 460.)
+plot.xlim(-70, 360.)
 plotax = plot.ax
 
-# plot.set_size(['cs'], 1, customsize=(10, 10), tight=False)
+left, bottom = plot.fig.transFigure.inverted().transform(\
+    plot.ax.transData.transform((175., -35.0)))
+right, top = plot.fig.transFigure.inverted().transform(\
+    plot.ax.transData.transform((350., 95.0)))
+print left, bottom
+print right, top
+height = top - bottom
+width = right - left
+clinac_spectrum_ax = plot.fig.add_axes([left, bottom, width, height])
+E, phi = np.loadtxt(expanduser("~") +
+                    "/data/clinac_6ex_data/spectrum_bremsstrahlung.txt",
+                    delimiter=',', skiprows=1, unpack=True)
+plot.fill_between(E, np.zeros_like(E), 2.E10 * np.array(phi),
+                  fc='#E3AE24', name='$\gamma$', axes=clinac_spectrum_ax)
+plot.fill_between(E[E > 2.2], np.zeros_like(E[E > 2.2]),
+                  2.E10 * np.array(phi[E > 2.2]),
+                  fc='#2EAFA4', name='$\gamma$', alpha=1.0,
+                  axes=clinac_spectrum_ax)
+plot.add_vline(2.2, 0., 4.5E11, color='#A7A9AC', axes=clinac_spectrum_ax)
+plot.add_arrow(2.2, 3.5, 1.5E11, 1.5E11, '', axes=clinac_spectrum_ax)
+plot.add_text(2.9, 1.65E11, r'$\left(\gamma,n\right)$ possible', axes=clinac_spectrum_ax)
+
+plot.ylabel(r'Flux ($\phi$) [$\frac{\gamma}{cm^{2}s}$]', axes=clinac_spectrum_ax)
+plot.xlabel(r'Energy ($E$) [$MeV$]', axes=clinac_spectrum_ax)
+plot.legend(axes=clinac_spectrum_ax)
+
 left, bottom = plot.fig.transFigure.inverted().transform(\
     plot.ax.transData.transform((-45., -180.)))
 right, top = plot.fig.transFigure.inverted().transform(\
@@ -200,9 +225,9 @@ position.yaxis.set_ticks_position('left')
 position.yaxis.set_label_position('left')
 cb.set_label(r"Photoneutron Event Density ($\rho$) [$\frac{\left(\gamma, n\right)}{cm^{3}s}$]")
 left, bottom = plot.fig.transFigure.inverted().transform(\
-    plot.ax.transData.transform((175., -100.0)))
+    plot.ax.transData.transform((175., -180.0)))
 right, top = plot.fig.transFigure.inverted().transform(\
-    plot.ax.transData.transform((260., -15.0)))
+    plot.ax.transData.transform((350., -55.0)))
 print left, bottom
 print right, top
 height = top - bottom
@@ -231,6 +256,10 @@ n_ax = plot.fig.add_axes([left, bottom, width, height])
 plot = r2.plot(linecolor='#746C66', linestyle='-', addto=plot, axes=n_ax)
 plot = expt.plot(linecolor='#B63F97', linestyle='-', addto=plot, axes=n_ax)
 
+clinac_spectrum_ax.spines['right'].set_visible(False)
+clinac_spectrum_ax.spines['top'].set_visible(False)
+clinac_spectrum_ax.get_xaxis().tick_bottom()
+clinac_spectrum_ax.get_yaxis().tick_left()
 spectrum_ax.spines['right'].set_visible(False)
 spectrum_ax.spines['top'].set_visible(False)
 spectrum_ax.get_xaxis().tick_bottom()
@@ -260,5 +289,5 @@ plot.ax.spines['bottom'].set_visible(False)
 plot.ax.set_xticks([], [])
 plot.ax.set_yticks([], [])
 plot.export('../img/setup_plot', formats=['pdf', 'pgf'], sizes=['cs'],
-            customsize=(17, 10), tight=False)
+            customsize=(14.5, 10), tight=False)
 plot.show()

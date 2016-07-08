@@ -38,4 +38,4 @@ detection_plot.xlabel('Pressure ($p$) [$bar$]');
 detection_plot.ylabel('Waiting Time ($t_{wait}$) [$s$]');
 detection_plot.legend();
 detection_plot.export('../img/photoneutron_detection',sizes=['cs'],
-	formats=['pdf', 'pgf'],customsize=[9.0, 3.0]);
+	formats=['pdf', 'pgf'],customsize=[8.0, 3.0]);

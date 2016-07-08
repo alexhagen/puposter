@@ -34,7 +34,7 @@ class datmfd_analysis():
         return ahf.curve(self.p, self.cr, u_x=self.u_p, u_y=self.u_cr,
                          name=self.export_name + '_cr')
     def return_eff(self):
-        return ahf.curve(self.p, self.eta, u_x=self.u_p, u_y=self.u_eta,
+        return ahf.curve(self.p, 100. * self.eta, u_x=self.u_p, u_y=self.u_eta,
                          name=self.export_name + '_eta')
 
     def cluster_power(self, fnames, nps, u_nps):
@@ -263,7 +263,7 @@ u_eff = [np.mean(u_eff[0:3]), np.mean(u_eff[4]), np.mean(u_eff[5:9]),
 std_eff = [np.std(eff_new[0:3]), np.std(eff_new[4]), np.std(eff_new[5:9]),
            np.std(eff_new[10:])]
 u_eff = np.sqrt(np.power(u_eff, 2.0) + np.power(std_eff, 2.0))
-cf_tena_eta = ahf.curve(pwr, eff, u_x=u_pwr, u_y=u_eff, name="cf_tena_setup")
+cf_tena_eta = ahf.curve(pwr, 100. * eff, u_x=u_pwr, u_y=u_eff, name="cf_tena_setup")
 
 plot = dd_jeff_eta.plot(linecolor='#746C66', linestyle='-')
 plot = dd_cf_tena_eta.plot(linecolor='#E3AE24', linestyle='-', addto=plot)
@@ -271,12 +271,12 @@ plot = cf_tena_eta.plot(linecolor='#E3AE24', linestyle='--', addto=plot)
 plot.lines_on()
 plot.ax.set_yscale('log')
 plot.add_data_pointer(3.5, curve=dd_cf_tena_eta, string=r"$DD + Cf$",
-                      place=(2.2, 5E-5))
+                      place=(2.2, 5E-3))
 plot.add_data_pointer(4.0, curve=cf_tena_eta, string=r"$Cf$",
-                      place=(2.7, 2E-4))
+                      place=(2.7, 2E-2))
 plot.add_data_pointer(6.5, curve=dd_tena_eta, string=r"$DD$",
-                      place=(7.5, 1E-7))
+                      place=(7.5, 1E-5))
 plot.xlabel(r'Power ($P$) [$W$]')
-plot.ylabel(r'Efficiency ($\eta$) [ ]')
+plot.ylabel(r'Efficiency ($\eta$) [$\%$]')
 plot.export('../img/datmfd_eff', formats=['pdf', 'pgf'], sizes=['cs'],
-            customsize=(6, 3.0))
+            customsize=(4.5, 3.0))
