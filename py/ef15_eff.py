@@ -55,7 +55,7 @@ plot = cf_tena_eta.plot(linecolor='#E3AE24', linestyle='-', addto=plot)
 plot.lines_off()
 plot.ax.set_yscale('log')
 plot.add_data_pointer(3.5, curve=cf_tena_eta, string=r"$Cf$",
-                      place=(2.2, 2E-2))
+                      place=(2.2, 6E-3))
 plot.add_data_pointer(6.5, curve=dd_tena_eta, string=r"$DD$",
                       place=(7.5, 1E-5))
 plot.xlabel(r'Power ($P$) [$W$]')

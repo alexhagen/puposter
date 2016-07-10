@@ -76,13 +76,13 @@ figure.fill_between(t[t_fiss2],
     np.zeros(np.size(t[t_fiss2])),
     phi[t_fiss2],fc='#5C8727',axes=figure.ax_subp[0]);
 figure.add_data_pointer(0.5*3.14/40000.0,mid_curve,
-    'Interrogation Pulse',place=(1.5*3.14/40000.0,0.75),
+    string='Interrogation Pulse',place=(1.5*3.14/40000.0,0.75),
     axes=figure.ax_subp[0]);
 figure.add_data_pointer(1.05*3.14/40000.0,mid_curve,
-    'Prompt Signal',place=(2.0*3.14/40000.0,1.0),
+    string='Prompt Signal',place=(2.0*3.14/40000.0,1.0),
     axes=figure.ax_subp[0]);
 figure.add_data_pointer(2.5*3.14/40000.0,mid_curve,
-    'Die Away Signal',place=(4.5*3.14/40000.0,0.5),
+    string='Die Away Signal',place=(4.5*3.14/40000.0,0.5),
     axes=figure.ax_subp[0])
 figure.xlabel('Time ($t$)', figure.ax_subp[0])
 figure.ylabel('Flux ($\phi$)', figure.ax_subp[0])

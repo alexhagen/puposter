@@ -134,6 +134,7 @@ with open("/Users/ahagen/code/mcnp_companion/tests/clinac_mcnp" + "/archive/clin
 E_p, _, zaid, _, x, y, z, _, _, _, _, _, ux, uy, uz, _, _ = \
   np.loadtxt("/Users/ahagen/code/mcnp_companion/tests/clinac_mcnp" + "/photo.out_temp", unpack=True)
 xyz = np.vstack([x, y, z])
+num_photoneutrons = 2.1E10 / 1.0E9 * 0.000115 * len(x)
 kde = stats.gaussian_kde(xyz)
 
 # Evaluate kde on a grid
@@ -142,7 +143,7 @@ xmax, zmax = x.max(), z.max()
 xi = np.linspace(-100, 100, 25)
 zi = np.linspace(-280, -100, 25)
 X, Z = np.meshgrid(xi, zi)
-ys = 1.0E10 * 0.000115 * np.array([kde((xii, 0., zii)) for xii,zii in zip(np.ravel(X), np.ravel(Z))])
+ys = 2.1E10 / 1.0E9 * 0.000115 * np.array([kde((xii, 0., zii)) for xii,zii in zip(np.ravel(X), np.ravel(Z))])
 Y = ys.reshape(X.shape)
 
 cdict = {"red": ((0.0, 1.0, 1.0),
@@ -178,6 +179,26 @@ plot.fill_between([-15, -5, 5, 15], [-100, -100, -100, -100],
 plot.lines_on()
 plot.markers_off()
 # plot.ax.set_aspect(1.0)
+plot.add_data_pointer(3., point=-100.,
+                      string=r"$%.1f\,\frac{n}{s}$" % num_photoneutrons +
+                      " photoneutrons emitted in $4\pi$",
+                      place=(55., -85.))
+plot.add_arrow(3., 25., -105., -95., fc="#7299C6")
+plot.add_arrow(-3., -25., -110., -135., fc="#7299C6")
+plot.add_arrow(-1., -20., -105., -101., fc="#7299C6")
+plot.add_arrow(2., 10., -115., -150., fc="#7299C6")
+plot.add_arrow(1., -3, -100., -75., fc="#7299C6")
+plot.fill_between([-5, 5], [-5, -5], [0, 0], fc="#E3AE24", alpha=1.0,
+                  leg=False)
+plot.add_data_pointer(0., point=-5., place=(25., -35.),
+                      string="Isocenter\n$2.4\\times 10^{4}\,\\frac{R}{hr}$")
+plot.add_data_pointer(132., point=-1, place=(100., -45),
+                      string=r"$>10^{2}\,\frac{R}{hr}$")
+plot.add_vmeasure(0., 0., 100., offset=0.15, units='cm')
+plot.add_vmeasure(0., -100., 0., offset=0.15, units='cm')
+plot.add_vline(0., 52., 63., lw=0.5, color="#A7A9AC")
+plot.add_arrow(0., 132., 56.5, 56.5)
+plot.add_text(65., 61.5, "LS/BF3 saturated throughout")
 plot.add_text(50, -115, "Concrete")
 plot.add_text(50, -150, "Subfloor")
 plot.add_arrow(0, 0, 100, 65, string=r"$\gamma$ beam", fc="#E3AE24")
@@ -186,7 +207,7 @@ plot.xlim(-70, 360.)
 plotax = plot.ax
 
 left, bottom = plot.fig.transFigure.inverted().transform(\
-    plot.ax.transData.transform((175., -35.0)))
+    plot.ax.transData.transform((175., -15.0)))
 right, top = plot.fig.transFigure.inverted().transform(\
     plot.ax.transData.transform((350., 95.0)))
 print left, bottom
@@ -197,19 +218,20 @@ clinac_spectrum_ax = plot.fig.add_axes([left, bottom, width, height])
 E, phi = np.loadtxt(expanduser("~") +
                     "/data/clinac_6ex_data/spectrum_bremsstrahlung.txt",
                     delimiter=',', skiprows=1, unpack=True)
-plot.fill_between(E, np.zeros_like(E), 2.E10 * np.array(phi),
+plot.fill_between(E, np.zeros_like(E), 2.1E10 * np.array(phi) / 200.,
                   fc='#E3AE24', name='$\gamma$', axes=clinac_spectrum_ax)
 plot.fill_between(E[E > 2.2], np.zeros_like(E[E > 2.2]),
-                  2.E10 * np.array(phi[E > 2.2]),
+                  2.E10 * np.array(phi[E > 2.2]) / 200.,
                   fc='#2EAFA4', name='$\gamma$', alpha=1.0,
                   axes=clinac_spectrum_ax)
-plot.add_vline(2.2, 0., 4.5E11, color='#A7A9AC', axes=clinac_spectrum_ax)
-plot.add_arrow(2.2, 3.5, 1.5E11, 1.5E11, '', axes=clinac_spectrum_ax)
-plot.add_text(2.9, 1.65E11, r'$\left(\gamma,n\right)$ possible', axes=clinac_spectrum_ax)
+plot.add_vline(2.2, 0., 4.5E11 / 200., color='#A7A9AC', axes=clinac_spectrum_ax)
+plot.add_arrow(2.2, 3.5, 1.5E11 / 200., 1.5E11 / 200., '', axes=clinac_spectrum_ax)
+plot.add_text(2.9, 1.65E11 / 200., r'$\left(\gamma,n\right)$ possible on $^{2}H$', axes=clinac_spectrum_ax)
+plot.title("Photon spectrum at isocenter", axes=clinac_spectrum_ax)
 
 plot.ylabel(r'Flux ($\phi$) [$\frac{\gamma}{cm^{2}s}$]', axes=clinac_spectrum_ax)
 plot.xlabel(r'Energy ($E$) [$MeV$]', axes=clinac_spectrum_ax)
-plot.legend(axes=clinac_spectrum_ax)
+
 
 left, bottom = plot.fig.transFigure.inverted().transform(\
     plot.ax.transData.transform((-45., -180.)))
@@ -220,31 +242,33 @@ print right, top
 height = top - bottom
 width = right - left
 position = plot.fig.add_axes([left, bottom, width, height])
-cb = plot.fig.colorbar(surf, cax=position, ticks=[0., 3400.], orientation='vertical')
+cb = plot.fig.colorbar(surf, cax=position, ticks=[], orientation='vertical')
 position.yaxis.set_ticks_position('left')
 position.yaxis.set_label_position('left')
 cb.set_label(r"Photoneutron Event Density ($\rho$) [$\frac{\left(\gamma, n\right)}{cm^{3}s}$]")
 left, bottom = plot.fig.transFigure.inverted().transform(\
     plot.ax.transData.transform((175., -180.0)))
 right, top = plot.fig.transFigure.inverted().transform(\
-    plot.ax.transData.transform((350., -55.0)))
+    plot.ax.transData.transform((350., -75.0)))
 print left, bottom
 print right, top
 height = top - bottom
 width = right - left
 spectrum_ax = plot.fig.add_axes([left, bottom, width, height])
-plot.fill_between(e_surf, np.zeros_like(e_surf), 2.E10 * 0.000115 * n_surf,
-                  fc='#A7A9AC', name='floor', axes=spectrum_ax)
 plot.fill_between(e_0, np.zeros_like(e_0), 2.E10 * 0.000115 * n_0,
                   fc="#746C66", name='on axis', axes=spectrum_ax)
 plot.fill_between(e_52, np.zeros_like(e_52), 2.E10 * 0.000115 * n_52,
                   fc="#E3AE24", name=r'$52\,cm$', axes=spectrum_ax)
 plot.fill_between(e_132, np.zeros_like(e_132), 2.E10 * 0.000115 * n_132,
                   fc="#B63F97", name=r'$132\,cm$', axes=spectrum_ax, alpha=1.0)
+plot.add_vline(0.5, color='#A7A9AC', axes=spectrum_ax)
+plot.add_arrow(0.5, 2., 1.E1, 1.E1, '', axes=spectrum_ax)
+plot.add_text(1.35, 12., "Neutron detection threshold\nfor $p_{neg}=5\,bar$", axes=spectrum_ax)
 
 plot.ylabel(r'Flux ($\phi$) [$\frac{n}{cm^{2}s}$]', axes=spectrum_ax)
 plot.xlabel(r'Energy ($E$) [$MeV$]', axes=spectrum_ax)
 plot.legend(axes=spectrum_ax)
+plot.title(r"Neutron spectrum from $\left(\gamma,n\right)$ interactions with floor", axes=spectrum_ax)
 
 left, bottom = plot.fig.transFigure.inverted().transform(\
     plot.ax.transData.transform((-1.0, 0.0)))
@@ -253,6 +277,10 @@ right, top = plot.fig.transFigure.inverted().transform(\
 height = top - bottom
 width = right - left
 n_ax = plot.fig.add_axes([left, bottom, width, height])
+plot.fill_between([-1., 140.], [1.E-3, 1.E-3], [1. / 300., 1. / 300.],
+                  fc='#A7A9AC', leg=False, axes=n_ax)
+plot.add_text(40., 2.E-3, 'Typical Neutron Background', color="#ffffff",
+              axes=n_ax)
 plot = r2.plot(linecolor='#746C66', linestyle='-', addto=plot, axes=n_ax)
 plot = expt.plot(linecolor='#B63F97', linestyle='-', addto=plot, axes=n_ax)
 
@@ -290,4 +318,40 @@ plot.ax.set_xticks([], [])
 plot.ax.set_yticks([], [])
 plot.export('../img/setup_plot', formats=['pdf', 'pgf'], sizes=['cs'],
             customsize=(14.5, 10), tight=False)
+
+plot = ahp.ah2d()
+plot.ax.set_aspect(1.0)
+plot.add_circle(0, 0, 140, fc="#E3AE24", alpha=0.1)
+plot.add_hmeasure(-20., 20., -30., offset=-0.01, units='cm')
+plot.add_vmeasure(-20, -30., 30., units='cm')
+plot.fill_between([-20, 20], [-30, -30], [30, 30], fc='#A7A9AC')
+plot.add_line([0., 0.], [-35., 35.], linestyle='--')
+plot.add_line([-25., 25.], [0., 0.], linestyle='--')
+plot.add_data_pointer(20., point=30, place=(37.5, 40), string="Metal Table")
+plot.add_data_pointer(5. / np.sqrt(2.), point=5. / np.sqrt(2.),
+                      place=(37.5, 20.), string="NU or Be Target")
+plot.add_circle(0, 0, 5, fc="#2EAFA4", alpha=1.0)
+plot.add_data_pointer(0., point=0.,
+                      place=(37.5, -20.), string="Isocenter")
+plot.add_circle(0., 132., 10., fc="None", ec="#746C66")
+plot.add_data_pointer(10. / np.sqrt(2.), point= 132. - 10. / np.sqrt(2.),
+                      place=(35, 85), string="CTMFD Detector")
+plot.add_text(55, 65, "LS/BF3 Saturated Throughout")
+plot.add_hline(0., -40, -50, lw=0.5, color="#A7A9AC")
+plot.add_arrow(-45, -45, 50, 132, r"$d$")
+plot.add_vline(-45, 0., 45, lw=0.5, color="#A7A9AC")
+plot.lines_on()
+plot.markers_off()
+plot.xlim(-80, 130)
+plot.ylim(-60, 150)
+plot.ax.spines['right'].set_visible(False)
+plot.ax.spines['top'].set_visible(False)
+plot.ax.spines['left'].set_visible(False)
+plot.ax.spines['bottom'].set_visible(False)
+plot.ax.get_xaxis().tick_bottom()
+plot.ax.get_yaxis().tick_left()
+plot.ax.set_xticks([], [])
+plot.ax.set_yticks([], [])
+plot.export('../img/clinac_setup_cartoon', formats=['pdf', 'pgf'], sizes=['cs'],
+            customsize=(7.25, 7.25), tight=False)
 plot.show()

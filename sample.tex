@@ -1,4 +1,4 @@
-\documentstyle{puposter}
+\documentclass{puposter}
 
 \begin{document}
 \title{Progress on Tensioned Metastable Fluid Detectors for use in active
@@ -18,16 +18,17 @@
     \begin{pucell}{4}{3}{}{}
         \begin{itemize}
             \item Current neutron detectors (such as He-3 and BF3 detectors) are limited by their gamma background, limited sensitivity, and the rising cost of the tube gas (in the case of He-3 tubes).
-            \item This has caused a high demand for new neutron detection technology, especially those that are able to differentiate between gamma and neutron events.
+            \item TMFDs offer transformational benefits: 100\% gamma/beta blindness even in > 100R/h background; High intrinsic efficiency  (to 80\% neutrons; to ~100\% alpha/fission recoils); Directionality/Imaging/Multiplicity of SNMs in  a single portable detector; Simplicity/Lower costs
             \item Fluids may be placed in tension, much as solids. This tension manifests itself as negative (sub-zero) pressures.
             \item When a fluid is placed in sufficient tension, neutron recoil events can deposit enough energy to create a cavitation event.
-            \item These cavitation events, if reaching critical size, can increase to macroscopic size. Upon implosion, those cavitations that have reached macroscopic sizes create audible implosion traces.
-            \item The macroscopic cavitation events, paired with audible implosion events provide the ability to see and hear neutron radiation detection events.
+            \item These cavitation events, if reaching critical size, can increase to macroscopic size, which, upon implosion, create audible implosion traces.
+            \item The macroscopic cavitation events, paired with audible implosion events provide the ability to see and hear neutron detection events.
         \end{itemize}
     \end{pucell} \\
-    \vspace*{-1.25in}
+    \vspace*{-2.25in}
     \begin{pucell}{4}{3}{}{}
-        \posterfigure{img/tmfd_cartoons.png}{Diagram of two different TMFDs, CTMFD and ATMFD}{fig:tmfds}
+        \vspace*{-4cm}
+            \posterfigure{img/tmfd_cartoons.png}{Diagram of two different TMFDs, CTMFD and ATMFD}{fig:tmfds}
     \end{pucell}
     \end{pucol}%
     \hspace*{\fill}
@@ -39,10 +40,10 @@
         \begin{pucell}{3}{3}{}{}
             \posterfigure{img/eff_vs_bulb_size.pgf}{Efficiency with size increase of CTMFD Bulbs}{fig:ctmfd-eff}
         \end{pucell} \\
-        \vspace*{\fill}
         \begin{pucell}{3}{2}{}{}
+            \vspace{-1cm}
             \begin{table}[H]
-            \caption{Summary of highest measured}
+            \caption{Summary of highest measured efficiency for various sizes of CTMFD}
                 \rowcolors{2}{grey20}{white}
                 \def\arraystretch{2.5}
                 \hspace*{-1cm}
@@ -63,19 +64,30 @@
   \begin{pucell}{3}{3}{Centrifugal TMFDs}{Efficiency and Rejection Experimentation}
     \begin{itemize}
       \item TENA uses a continuously driven $2.45\,MeV$ $\left(D,D\right)$ interrogation source
-      \item CTMFDs can be tuned to be sensitive to only neutrons above $~2.8\,MeV$, only detecting fission neutrons from the interrogated cargo
-      \item Sizes of CTMFDs tested have ranged from $3\,cm^{3}$ bulb to $40\,cm^{3}$ bulb
-      \item CTMFDs with $16 - 20 cm^{3}$ bulbs have efficiency ratios between $\left(D,D\right)$ and fission of $1:10^{3}$ with efficiencies up to $1.5\%$
-      \item Larger CTMFDs with $40 cm^{3}$ bulbs showed efficiency ratios of $1:10^{3}$ and $1:10^{4}$ with efficiencies of $4.0\%$ and $1.5\%$, respectively
     \end{itemize}
+    \begin{table}[H]
+        \vspace*{-0.5cm}
+        \caption{Rejection ratio and efficiency for $16\,cm^{3}$ SV and $40\,cm^{3}$ SV CTMFDs}
+        \rowcolors{2}{grey20}{white}
+        \def\arraystretch{1.0}
+        \hspace*{0.5cm}
+        \begin{tabular}{>{\centering}m{0.15\textwidth}>{\centering}m{0.25\textwidth}>{\centering}m{0.25\textwidth}>{\centering}m{0.25\textwidth}}
+            \rowcolor{newgold}
+            CTMFD SV ($cm^{3}$) & DD Rejection Ratio ($\eta_{Cf}:\eta_{DD}$) & $p_{neg}$ ($bar$) & $^{252}Cf$ Instrinsic Detecton efficiency $\eta_{Cf}$ ($E_{n}>2.5\,MeV$)\tabularnewline
+            $16$ & $10^{3}:1$ & $3.2$ & $1.3\%$\tabularnewline
+            $16$ & $10^{4}:1$ & $<2.8$ & --\tabularnewline
+            $40$ & $10^{3}:1$ & $3.75$ & $4.0\%$\tabularnewline
+            $40$ & $10^{4}:1$ & $3.4$ & $1.6\%$\tabularnewline
+        \end{tabular}
+    \end{table}
   \end{pucell}%
   \hspace*{\fill}
   \begin{pucell}{2}{3}{}{}
-    \posterfigure{img/m16_eff.pgf}{Efficiency between $\left(D,D\right)$ and $Cf$ for $16\,cm^{3}$ and $40\,cm^{3}$ bulbed CTMFDs}{fig:mctmfd}
+    \posterfigure{img/m16_eff.pgf}{Efficiency Ratio ($\eta_{Cf} : \eta_{DD}$) between $Cf$ and $\left(D,D\right)$ for $40\,cm^{3}$ bulbed CTMFD}{fig:mctmfd}
   \end{pucell}%
   \hspace*{\fill}
   \begin{pucell}{2}{3}{}{}
-    \posterfigure{img/r5_eff.pgf}{Efficiency between $\left(D,D\right)$ and $Cf$ for $16\,cm^{3}$ and $40\,cm^{3}$ bulbed CTMFDs}{fig:mctmfd}
+    \posterfigure{img/r5_eff.pgf}{Efficiency between $\left(D,D\right)$ and $Cf$ for $40\,cm^{3}$ bulbed CTMFD}{fig:mctmfd}
   \end{pucell} \\
   \vspace*{0.25in} \\
   % ATMFD Row
@@ -105,12 +117,12 @@
   \def\numheadings{2}
   \begin{pucell}{5}{8}{Photointerrogation}{}
     \begin{pucol}{2}{8}
-      \begin{pucell}{2}{5}{Clinac 6Ex Interrogation}{Interrogation Results with $6 MeV {\HUGE \gamma}$}
+      \begin{pucell}{2}{5}{Clinac 6Ex Interrogation}{Interrogation Results with $6\,MeV$ \scalebox{2.0}{$\gamma$}}
         \begin{itemize}
           \item TMFDs are blind to photons, which makes them ideally suited for photointerrogation environments
-          \item The TMFDs have proven blindness in up to a $>100\,\mathrm{\frac{R}{hr}}$ $\mathrm{^{140}La}$ field ($1.7\,\mathrm{MeV}\,\gamma$)
+          \item The TMFDs have proven blindness in up to a $>100\,\mathrm{\frac{R}{hr}}$ $\mathrm{^{140}La}$ field ($1.6\,\mathrm{MeV}$ \scalebox{2.0}{$\gamma$})
           \item TMFDs have been tested in a photointerrogation environment using a $6\,\mathrm{MV}$ Varian CLINAC accelerator with a $\mathrm{W}$ target
-          \item Under photointerrogation, a CTMFD at $5\,\mathrm{bar}$ was able to detect $630\,\mathrm{g}$ of natural uranium while remaining blind to photons
+          \item Under photointerrogation, a CTMFD at $5\,\mathrm{bar}$ was able to detect $630\,\mathrm{g}$ of natural uranium dioxide while remaining blind to photons
           \item At higher negative pressure, photoneutron interrogation from the $\left(\gamma,n\right)$ reaction on $\mathrm{^{2}H}$ contaminates the interrogation beam
           \item Using lower negative pressure and standoff was able to gate out contaminating photoneutrons, but schemes for shielding the detector or photoneutron creating materials are in development
           \item If photoneutron contamination can be reduced, the full efficiency of the CTMFD detector could be used, significantly decreasing the mass of Uranium that could be detected
@@ -118,7 +130,7 @@
       \end{pucell} \\
       \vspace*{\fill}
       \begin{pucell}{2}{3}{}{}
-        \posterfigure{img/clinac_setup.pdf}{Setup of CTMFD Detector under $6\,MeV\,{\HUGE \gamma}$ beamline}{fig:clinacsetup}
+        \posterfigure{img/clinac_setup_cartoon.pgf}{Setup of CTMFD Detector under $6\,MeV$ photon beamline}{fig:clinacsetup}
       \end{pucell}
     \end{pucol}%
     \begin{pucol}{3}{8}
@@ -136,8 +148,9 @@
     \begin{pucell}{2}{4}{DDAA}{Differential Die Away Analysis}
       \vspace*{\fill}
       \begin{itemize}
-        \item Differential Die Away Analysis type schemes are possible with TMFDs. The Acoustically Tensioned Metastable Fluid Detector could be phase locked to be insensitive during the interrogation pulse, thus only detecting on a die away signal.
-        \item Phase locking will guard against detection of the interrogation beam.
+        \item Differential Die Away Analysis uses a pulsed $14.1\,MeV$ $\left(D,T\right)$ interrogation source
+        \item DDAA type schemes are possible with TMFDs. The Acoustically Tensioned Metastable Fluid Detector could be phase locked to be insensitive during the interrogation pulse, thus only detecting on a die away signal.
+        \item Phase locking will guard against detection of the interrogation beam, to allow operation at high power to maximize detection efficiency.
         \item The accurate event timing ($<\mathrm{ns}$) will allow for further rejection of interrogation beam by veto.
       \end{itemize}
       \vspace*{\fill}

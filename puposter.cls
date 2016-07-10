@@ -1,4 +1,4 @@
-\NeedsTeXFormat{LaTeX2e}[1998/06/01]
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{puposter}[2016/06/22 class for purdue poster design]
 
 %% Load base
@@ -92,6 +92,8 @@
 \newcommand{\conference}[1]{\def\@conference{#1}}
 \newcommand{\affiliation}[1]{\def\@affiliation{#1}}
 \newcommand{\tss}[1]{\textsuperscript{\myriad\mdseries{#1}}}
+\let\saveeta\eta
+\renewcommand{\eta}{\protect\scalebox{2.0}{\protect\ensuremath{\protect\saveeta}}}
 
 \input{pupatterns.tex}
 

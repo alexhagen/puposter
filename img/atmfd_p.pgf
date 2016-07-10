@@ -17370,15 +17370,15 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetstrokeopacity{0.000000}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.659321in}{1.852374in}}%
-\pgfpathlineto{\pgfqpoint{1.675806in}{1.832411in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{1.028812in}{1.745546in}}{\pgfqpoint{0.974368in}{1.398042in}}%
-\pgfpathlineto{\pgfqpoint{0.991062in}{1.404180in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{0.981084in}{1.385075in}}{\pgfqpoint{0.964184in}{1.363650in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{0.950004in}{1.387372in}}{\pgfqpoint{0.947221in}{1.411480in}}%
-\pgfpathlineto{\pgfqpoint{0.961171in}{1.399944in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{1.009759in}{1.767413in}}{\pgfqpoint{1.669218in}{1.876364in}}%
-\pgfpathlineto{\pgfqpoint{1.659321in}{1.852374in}}%
+\pgfpathmoveto{\pgfqpoint{1.659294in}{1.855991in}}%
+\pgfpathlineto{\pgfqpoint{1.675659in}{1.835932in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{1.027930in}{1.752863in}}{\pgfqpoint{0.974213in}{1.398089in}}%
+\pgfpathlineto{\pgfqpoint{0.990872in}{1.404309in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{0.981004in}{1.385113in}}{\pgfqpoint{0.964154in}{1.363641in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{0.949922in}{1.387324in}}{\pgfqpoint{0.946988in}{1.411349in}}%
+\pgfpathlineto{\pgfqpoint{0.961007in}{1.399923in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{1.008600in}{1.774645in}}{\pgfqpoint{1.669327in}{1.879923in}}%
+\pgfpathlineto{\pgfqpoint{1.659294in}{1.855991in}}%
 \pgfpathclose%
 \pgfusepath{fill}%
 \end{pgfscope}%
@@ -17386,7 +17386,7 @@
 \definecolor{textcolor}{rgb}{0.454902,0.423529,0.400000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=1.732743in,y=1.863539in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont \(\displaystyle \left( 0.000039,0.500000 \right)\)}%
+\pgftext[x=1.732743in,y=1.863539in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont Interrogation Pulse}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetroundcap%
@@ -17398,15 +17398,15 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetstrokeopacity{0.000000}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{2.043513in}{2.416881in}}%
-\pgfpathlineto{\pgfqpoint{2.057016in}{2.394769in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{1.590892in}{2.400981in}}{\pgfqpoint{1.449163in}{2.395561in}}%
-\pgfpathlineto{\pgfqpoint{1.459132in}{2.380702in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{1.431817in}{2.385453in}}{\pgfqpoint{1.413287in}{2.398737in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{1.428435in}{2.416389in}}{\pgfqpoint{1.455983in}{2.425035in}}%
-\pgfpathlineto{\pgfqpoint{1.448133in}{2.408855in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{1.590292in}{2.425430in}}{\pgfqpoint{2.056655in}{2.439212in}}%
-\pgfpathlineto{\pgfqpoint{2.043513in}{2.416881in}}%
+\pgfpathmoveto{\pgfqpoint{2.043511in}{2.418134in}}%
+\pgfpathlineto{\pgfqpoint{2.057004in}{2.396010in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{1.590606in}{2.402685in}}{\pgfqpoint{1.449021in}{2.396474in}}%
+\pgfpathlineto{\pgfqpoint{1.458976in}{2.381661in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{1.431712in}{2.386280in}}{\pgfqpoint{1.413092in}{2.399371in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{1.428057in}{2.417187in}}{\pgfqpoint{1.455603in}{2.425977in}}%
+\pgfpathlineto{\pgfqpoint{1.447917in}{2.409762in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{1.589992in}{2.427137in}}{\pgfqpoint{2.056687in}{2.440453in}}%
+\pgfpathlineto{\pgfqpoint{2.043511in}{2.418134in}}%
 \pgfpathclose%
 \pgfusepath{fill}%
 \end{pgfscope}%
@@ -17414,7 +17414,7 @@
 \definecolor{textcolor}{rgb}{0.454902,0.423529,0.400000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=2.117435in,y=2.391200in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont \(\displaystyle \left( 0.000082,1.000000 \right)\)}%
+\pgftext[x=2.117435in,y=2.391200in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont Prompt Signal}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetroundcap%
@@ -17426,15 +17426,15 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetstrokeopacity{0.000000}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{3.967117in}{1.341235in}}%
-\pgfpathlineto{\pgfqpoint{3.982203in}{1.320169in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{2.572054in}{1.216554in}}{\pgfqpoint{2.511289in}{0.505838in}}%
-\pgfpathlineto{\pgfqpoint{2.527539in}{0.513143in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{2.518926in}{0.492651in}}{\pgfqpoint{2.502602in}{0.470849in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{2.487826in}{0.493965in}}{\pgfqpoint{2.483285in}{0.517259in}}%
-\pgfpathlineto{\pgfqpoint{2.497999in}{0.506914in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{2.554193in}{1.240271in}}{\pgfqpoint{3.978643in}{1.364471in}}%
-\pgfpathlineto{\pgfqpoint{3.967117in}{1.341235in}}%
+\pgfpathmoveto{\pgfqpoint{3.967138in}{1.348380in}}%
+\pgfpathlineto{\pgfqpoint{3.981984in}{1.327148in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{2.570491in}{1.239362in}}{\pgfqpoint{2.511148in}{0.505890in}}%
+\pgfpathlineto{\pgfqpoint{2.527369in}{0.513365in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{2.518858in}{0.492771in}}{\pgfqpoint{2.502576in}{0.470908in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{2.487757in}{0.494011in}}{\pgfqpoint{2.483094in}{0.517251in}}%
+\pgfpathlineto{\pgfqpoint{2.497853in}{0.506905in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{2.552222in}{1.262998in}}{\pgfqpoint{3.978918in}{1.371486in}}%
+\pgfpathlineto{\pgfqpoint{3.967138in}{1.348380in}}%
 \pgfpathclose%
 \pgfusepath{fill}%
 \end{pgfscope}%
@@ -17442,7 +17442,7 @@
 \definecolor{textcolor}{rgb}{0.454902,0.423529,0.400000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=4.040896in,y=1.335878in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont \(\displaystyle \left( 0.000196,0.077012 \right)\)}%
+\pgftext[x=4.040896in,y=1.335878in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont Die Away Signal}%
 \end{pgfscope}%
 \end{pgfpicture}%
 \makeatother%
